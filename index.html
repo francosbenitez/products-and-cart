@@ -23,7 +23,11 @@
     <body>
         <div id="app" v-cloak>
             {{ greeting }}
-            <input @keyup.enter="greet" v-model="greeting" />
+            <!-- 
+                <input @keyup.enter="greet" v-model="greeting" />
+                The way placed below is other way to use this method. The difference is that the method below allows arguments. 
+             -->
+            <input @keyup.enter="greet(greeting + '!!!!!!!!!')" v-model="greeting" />
             
             <hr />
         
@@ -32,7 +36,7 @@
                 The "v-on:" can be replaced by "@".
              -->
             <button @click="isVisible=!isVisible">Toggle Box</button>
-            <button @click="toggleBox">Toggle Box</button>
+            <button @click.right="toggleBox">Toggle Box</button>
             <!-- 
                 <button v-on:click="isVisible=true">Toggle Box</button> 
                 This only works toward one direction, the true direction of the box 
@@ -59,6 +63,9 @@
                     },
                     greet() {
                         console.log(this.greeting)
+                    },
+                    greet(greeting) {
+                        console.log(greeting)
                     }
                 }
             })
